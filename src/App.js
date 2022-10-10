@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { isCajaOpen, getProducts, addComanda, API } from "./api";
 import botella from "./assets/botella.png";
 import copa from "./assets/copa2.jpg";
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   const [caja, setCaja] = useState({});
@@ -158,6 +159,7 @@ function App() {
     setComandas(
       comandas.filter((element) => element.idComanda !== comanda.idComanda)
     );
+    toast.error("Producto eliminado")
   };
   const enviarComandaBackend = () => {
     console.log(comandas);
@@ -177,6 +179,7 @@ function App() {
       setComandas([]);
       setPrecioComanda(0);
       addComanda(newComanda);
+      toast.success('Enviado con exito')
     } else {
       alert("Comanda vacia");
     }
@@ -206,6 +209,7 @@ function App() {
   }
   return (
     <div className="container containerManual">
+      <Toaster/>
       <div className="row">
         <div className="col-12">
           <div className="card">
@@ -306,6 +310,7 @@ function App() {
                   />
                   <p className="text-center">Copas</p>
                 </div>
+                
               </div>
             </div>
           </div>
