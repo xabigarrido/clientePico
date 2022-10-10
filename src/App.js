@@ -213,7 +213,7 @@ function App() {
       <div className="row">
         <div className="col-12">
           <div className="card">
-            <div className="card-body">
+            {caja._id != null && (            <div className="card-body">
               <h1 className="card-title">Nueva peticion:</h1>
               <div className="comandas column">
                 <div className="card mb-1">
@@ -275,7 +275,8 @@ function App() {
                   </>
                 ))}
               </div>
-            </div>
+            </div>)}
+            
           </div>
         </div>
       </div>
@@ -481,8 +482,6 @@ function App() {
                         />
                         <p className="text-center">
                           <b>{element.nombre}</b>
-                          <br></br>
-                          {element.precio} €
                         </p>
                       </div>
                     ))}
