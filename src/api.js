@@ -67,7 +67,7 @@ export const getProducts = async () => {
 
 export const addComanda = async (newComanda) => {
   const dataMesa = {
-    cantidad: 1,
+    cantidad: newComanda.contenido.length,
     idMesa: newComanda.idMesa,
   };
   try {
