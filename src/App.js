@@ -6,6 +6,7 @@ import { isCajaOpen, getProducts, addComanda, API } from "./api";
 import botella from "./assets/botella.png";
 import copa from "./assets/copa2.jpg";
 import toast, { Toaster } from 'react-hot-toast';
+import {socket} from './socket'
 
 function App() {
   const [caja, setCaja] = useState({});
@@ -162,10 +163,13 @@ function App() {
     toast.error("Producto eliminado")
   };
   const enviarComandaBackend = () => {
+    socket.emit("cliente:actualizarComandas");
+    socket.emit("cliente:actualizarComandas");
+
     console.log(comandas);
     if (comandas.length > 0) {
       const newComanda = {
-        idMesa: "633e36b936ae8b741ffeade3",
+        idMesa: "6344f8f1a6cef257b8d96f24",
         datosMesa: "Ninguno",
         tipo: "Ninguno",
         contenido: comandas,
