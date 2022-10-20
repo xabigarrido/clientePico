@@ -49,7 +49,7 @@ export default function Admin() {
               type="email"
               className="form-control"
               id="email"
-              placeholder="Correo electronico o DNI"
+              placeholder="Correo electronico o DNI Piconera"
               onChange={(event) =>
                 setUserLogin({ ...userLogin, email: event.target.value })
               }
