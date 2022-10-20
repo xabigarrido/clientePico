@@ -1,14 +1,13 @@
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.css";
+import "../App.css";
 import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useState } from "react";
-import { isCajaOpen, getProducts, addComanda, API } from "./api";
-import botella from "./assets/botella.png";
-import copa from "./assets/copa2.jpg";
+import { isCajaOpen, getProducts, addComanda, API } from "../api";
+import botella from "../assets/botella.png";
+import copa from "../assets/copa2.jpg";
 import toast, { Toaster } from 'react-hot-toast';
-import {socket} from './socket'
+import {socket} from '../socket'
 
-function App() {
+function Comanda() {
   const [caja, setCaja] = useState({});
   const [tokens, setTokens] = useState([]);
   const [products, setProducts] = useState([]);
@@ -544,4 +543,4 @@ function App() {
   );
 }
 
-export default App;
+export default Comanda;
