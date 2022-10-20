@@ -21,7 +21,7 @@ root.render(
         <Route path='/comanda' element={<Comanda />}/>
         <Route path='/admin' element={<Admin />}/>
         <Route path='/paneladmin' element={<PanelAdmin />}/>
-        <Route path='/tikadas/:id/:mes/:year' element={<Tikadas />}/>
+        <Route path='/tikadas/:id/:mes/:year/:sueldo' element={<Tikadas />}/>
         <Route path='*' element={<NotFound />}/>
     </Routes>
     </BrowserRouter>

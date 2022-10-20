@@ -20,9 +20,9 @@ export default function PanelAdmin() {
   const [buscarRango, setBuscarRango] = useState(null);
   const [empleadosFound, setEmpleadosFound] = useState([]);
   const [pickEmpleado, setPickEmpleado] = useState({});
-  const [pickMes, setPickMes] = useState(moment().format("MMMM"));
+  const [pickMes, setPickMes] = useState(moment().format("MMMM").toLowerCase());
   const [pickYear, setPickYear] = useState(moment().format("YYYY"));
-
+  const [sueldo, setSueldo] = useState(0)
   if (user.empleado == null) {
     // return navigate("/");
   }
@@ -210,7 +210,7 @@ export default function PanelAdmin() {
               {empleadosFound.map((empleado) => (
                 <div
                   key={empleado._id}
-                  className={`card shadow-sm bg-${user.mode} text-${
+                  className={`card col-sm-12 col-lg-3 col-xl-2 col-12 shadow-sm bg-${user.mode} text-${
                     user.mode == "ligth" ? "dark" : "white"
                   } col-2 m-1`}
                 >
@@ -243,14 +243,15 @@ export default function PanelAdmin() {
                         Cuenta Suspendida
                       </button>
                     )}
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => {
-                        navigate(`/tikadas/${empleado._id}`);
-                      }}
-                    >
-                      Ver Tikadas
-                    </button>
+                        <button
+                          type="button"
+                          className="btn btn-warning"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                          onClick={() => setPickEmpleado(empleado)}
+                        >
+                          Ver tikadas
+                        </button>
                   </div>
                 </div>
               ))}
@@ -273,7 +274,7 @@ export default function PanelAdmin() {
                   {empleados.map((empleado) => (
                     <div
                       key={empleado._id}
-                      className={`card shadow-sm bg-${user.mode} text-${
+                      className={`card col-sm-12 col-lg-3 col-xl-2 col-12 shadow-sm bg-${user.mode} text-${
                         user.mode == "ligth" ? "dark" : "white"
                       } col-2 m-1`}
                     >
@@ -309,22 +310,14 @@ export default function PanelAdmin() {
                             Cuenta Suspendida
                           </button>
                         )}
-                        <div
-                          className="btn btn-warning"
-                          onClick={() => {
-                            navigate(`/tikadas/${empleado._id}`);
-                          }}
-                        >
-                          Ver Tikadas
-                        </div>
                         <button
                           type="button"
-                          className="btn btn-primary"
+                          className="btn btn-warning"
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
                           onClick={() => setPickEmpleado(empleado)}
                         >
-                          Launch demo modal
+                          Ver tikadas
                         </button>
                       </div>
                     </div>
@@ -392,6 +385,15 @@ export default function PanelAdmin() {
                 <option value="2024">2024</option>
                 <option value="2025">2025</option>
               </select>
+              <input
+              type="number"
+              className={`form-control w-50 bg-${user.mode} text-${user.mode == 'ligth' ? 'dark' : 'white'}`}
+              id="sueldo"
+              placeholder="Euros la hora"
+              onChange={(event) =>
+                setSueldo(event.target.value)
+              }
+            />
             </div>
             <div className={`modal-body bg-${user.mode} text-${user.mode == 'ligth' ? 'dark' : 'white'}`}>
               <button
@@ -401,8 +403,8 @@ export default function PanelAdmin() {
               >
                 Cerrar
               </button>
-              <button type="button" className="btn btn-primary" onClick={()=>{
-                navigate(`/tikadas/${pickEmpleado._id}/${pickMes}/${pickYear}`);
+              <button data-bs-dismiss="modal" type="button" className="btn btn-primary" onClick={()=>{
+                navigate(`/tikadas/${pickEmpleado._id}/${pickMes}/${pickYear}/${sueldo}`);
               }}>
                 Consultar tikadas
               </button>

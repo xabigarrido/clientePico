@@ -60,9 +60,9 @@ export default function Tikadas() {
   }
   const loadTikadas = async () => {
     console.log(params)
-    const data = await getTikadas(params.id, "octubre", "2022");
-    console.log(data);
+    const data = await getTikadas(params.id, params.mes, params.year);
     setTikadas(data);
+    setSueldo(params.sueldo)
     let dineroPagar = 0;
     let horasTrabajadas = 0;
     let minutosTrabajados = 0;
@@ -81,11 +81,12 @@ export default function Tikadas() {
     }
     setSueldoTotal(financial(dineroPagar));
     setTiempoTrabajado(`${horasTrabajadas} h ${minutosTrabajados} min`);
+    console.log(dineroPagar)
   };
   useEffect(() => {
     loadTikadas();
     return () => {};
-  }, []);
+  }, [sueldo]);
 
   if (user.empleado == null) {
     // return navigate("/");
