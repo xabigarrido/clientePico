@@ -9,6 +9,7 @@ import {BrowserRouter, Routes, Route,} from 'react-router-dom'
 import { Provider } from "react-redux";
 import {store} from './app/store'
 import "bootstrap/dist/css/bootstrap.css";
+import Welcome from './pages/Welcome';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,7 +17,7 @@ root.render(
     <Provider store={store}>
     <BrowserRouter>
     <Routes>
-        <Route path='/' element={<div>Hello world</div>}/>
+        <Route path='/' element={<Welcome />}/>
         <Route path='/comanda' element={<Comanda />}/>
         <Route path='/admin' element={<Admin />}/>
         <Route path='/paneladmin' element={<PanelAdmin />}/>
