@@ -11,6 +11,15 @@ export const getTikadas = async (id, mes, year) => {
     console.log(error);
   }
 };
+
+export const getEmpleado = async (id) => {
+  try {
+    const data = await fetch(`${API}/empleados/user/${id}`);
+    return await data.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const buscarEmpleados = async (action) =>{
 try {
   const data = await fetch(`${API}/empleados/buscarEmpleados`, {

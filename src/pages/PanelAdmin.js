@@ -7,7 +7,9 @@ import Antique from "../assets/Logo-Antique.png";
 import Rosso from "../assets/Logo-ROSSO.png";
 import { AiFillIdcard, AiOutlineWhatsApp } from "react-icons/ai";
 import { changeMode, addEmpleado } from "../features/userStore";
-import moment from 'moment'
+import moment from "moment";
+import "moment/locale/es";
+moment.locale("es-ES");
 
 export default function PanelAdmin() {
   const user = useSelector((state) => state.userStore);
@@ -22,7 +24,7 @@ export default function PanelAdmin() {
   const [pickEmpleado, setPickEmpleado] = useState({});
   const [pickMes, setPickMes] = useState(moment().format("MMMM").toLowerCase());
   const [pickYear, setPickYear] = useState(moment().format("YYYY"));
-  const [sueldo, setSueldo] = useState(0)
+  const [sueldo, setSueldo] = useState(0);
   if (user.empleado == null) {
     // return navigate("/");
   }
@@ -210,9 +212,9 @@ export default function PanelAdmin() {
               {empleadosFound.map((empleado) => (
                 <div
                   key={empleado._id}
-                  className={`card col-sm-12 col-lg-3 col-xl-2 col-12 shadow-sm bg-${user.mode} text-${
-                    user.mode == "ligth" ? "dark" : "white"
-                  } col-2 m-1`}
+                  className={`card col-sm-12 col-lg-3 col-xl-2 col-12 shadow-sm bg-${
+                    user.mode
+                  } text-${user.mode == "ligth" ? "dark" : "white"} col-2 m-1`}
                 >
                   <img
                     src={`${URL}/${empleado.foto}`}
@@ -243,15 +245,15 @@ export default function PanelAdmin() {
                         Cuenta Suspendida
                       </button>
                     )}
-                        <button
-                          type="button"
-                          className="btn btn-warning"
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
-                          onClick={() => setPickEmpleado(empleado)}
-                        >
-                          Ver tikadas
-                        </button>
+                    <button
+                      type="button"
+                      className="btn btn-warning"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      onClick={() => setPickEmpleado(empleado)}
+                    >
+                      Ver tikadas
+                    </button>
                   </div>
                 </div>
               ))}
@@ -274,7 +276,9 @@ export default function PanelAdmin() {
                   {empleados.map((empleado) => (
                     <div
                       key={empleado._id}
-                      className={`card col-sm-12 col-lg-3 col-xl-2 col-12 shadow-sm bg-${user.mode} text-${
+                      className={`card col-sm-12 col-lg-3 col-xl-2 col-12 shadow-sm bg-${
+                        user.mode
+                      } text-${
                         user.mode == "ligth" ? "dark" : "white"
                       } col-2 m-1`}
                     >
@@ -337,7 +341,11 @@ export default function PanelAdmin() {
       >
         <div className="modal-dialog">
           <div className="modal-content">
-            <div className={`modal-header bg-${user.mode} text-${user.mode == 'ligth' ? 'dark' : 'white'}`}>
+            <div
+              className={`modal-header bg-${user.mode} text-${
+                user.mode == "ligth" ? "dark" : "white"
+              }`}
+            >
               <h5 className="modal-title" id="exampleModalLabel">
                 {pickEmpleado.nombre} {pickEmpleado.apellidos}
               </h5>
@@ -348,16 +356,21 @@ export default function PanelAdmin() {
                 aria-label="Close"
               ></button>
             </div>
-            <div className={`modal-body bg-${user.mode} text-${user.mode == 'ligth' ? 'dark' : 'white'}`}>
+            <div
+              className={`modal-body bg-${user.mode} text-${
+                user.mode == "ligth" ? "dark" : "white"
+              }`}
+            >
               <select
                 onChange={(event) => {
-                  setPickMes(event.target.value)
+                  setPickMes(event.target.value);
                 }}
                 className={`form-select w-25 mb-1 bg-${user.mode} text-${
                   user.mode == "ligth" ? "dark" : "white"
                 }`}
                 aria-label="Default select example"
               >
+                <option value={moment().format("MMMM").toLowerCase()}>{moment().format("MMMM")}</option>
                 <option value="enero">Enero</option>
                 <option value="febrero">Febrero</option>
                 <option value="marzo">Marzo</option>
@@ -386,16 +399,20 @@ export default function PanelAdmin() {
                 <option value="2025">2025</option>
               </select>
               <input
-              type="number"
-              className={`form-control w-50 bg-${user.mode} text-${user.mode == 'ligth' ? 'dark' : 'white'}`}
-              id="sueldo"
-              placeholder="Euros la hora"
-              onChange={(event) =>
-                setSueldo(event.target.value)
-              }
-            />
+                type="number"
+                className={`form-control w-50 bg-${user.mode} text-${
+                  user.mode == "ligth" ? "dark" : "white"
+                }`}
+                id="sueldo"
+                placeholder="Euros la hora"
+                onChange={(event) => setSueldo(event.target.value)}
+              />
             </div>
-            <div className={`modal-body bg-${user.mode} text-${user.mode == 'ligth' ? 'dark' : 'white'}`}>
+            <div
+              className={`modal-body bg-${user.mode} text-${
+                user.mode == "ligth" ? "dark" : "white"
+              }`}
+            >
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -403,16 +420,22 @@ export default function PanelAdmin() {
               >
                 Cerrar
               </button>
-              <button data-bs-dismiss="modal" type="button" className="btn btn-primary" onClick={()=>{
-                navigate(`/tikadas/${pickEmpleado._id}/${pickMes}/${pickYear}/${sueldo}`);
-              }}>
+              <button
+                data-bs-dismiss="modal"
+                type="button"
+                className="btn btn-primary"
+                onClick={() => {
+                  navigate(
+                    `/tikadas/${pickEmpleado._id}/${pickMes}/${pickYear}/${sueldo}`
+                  );
+                }}
+              >
                 Consultar tikadas
               </button>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   );
 }
