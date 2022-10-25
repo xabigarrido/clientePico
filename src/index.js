@@ -17,7 +17,7 @@ root.render(
     <Provider store={store}>
     <BrowserRouter>
     <Routes>
-        <Route path='/' element={<Welcome />}/>
+        <Route path='/' element={<Comanda />}/>
         <Route path='/comanda' element={<Comanda />}/>
         <Route path='/admin' element={<Admin />}/>
         <Route path='/paneladmin' element={<PanelAdmin />}/>

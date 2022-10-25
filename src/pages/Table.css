@@ -4,3 +4,6 @@ tr{
 .darkmode{
     z-index: 8451252;
 }
+.bajarTop{
+top: 50px !important;
+}

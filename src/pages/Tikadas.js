@@ -12,6 +12,8 @@ import {
 } from "../api";
 import "./Table.css";
 import Piconera from "../assets/Logo-Piconera.png";
+import Antique from "../assets/Logo-Antique.png";
+import Rosso from "../assets/Logo-ROSSO.png";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import moment from "moment";
 import "moment/locale/es";
@@ -30,6 +32,7 @@ export default function Tikadas() {
   const [selectPickMes, setSelectPickMes] = useState(null);
   const [selectPickYear, setSelectPickYear] = useState(null);
   const [selectPickSueldo, setSelectPickSueldo] = useState(0);
+  const [fondoMostrar, setFondoMostrar] = useState(null);
   const params = useParams();
 
   const [isDarkMode, setDarkMode] = useState(
@@ -74,6 +77,15 @@ export default function Tikadas() {
     setTikadas(data);
     setEmpleado(dataEmpleado);
     setSueldo(params.sueldo);
+    if (dataEmpleado.empresa == "6350346b5e2286c0a43467c4") {
+      setFondoMostrar(Piconera);
+    }
+    if (dataEmpleado.empresa == "635034a45e2286c0a43467c6") {
+      setFondoMostrar(Antique);
+    }
+    if (dataEmpleado.empresa == "635034ab5e2286c0a43467c8") {
+      setFondoMostrar(Rosso);
+    }
     let dineroPagar = 0;
     let horasTrabajadas = 0;
     let minutosTrabajados = 0;
@@ -94,14 +106,14 @@ export default function Tikadas() {
     setTiempoTrabajado(`${horasTrabajadas} h ${minutosTrabajados} min`);
     console.log(dineroPagar);
   };
-  
+
   useEffect(() => {
     setPickYear(params.year);
     setPickMes(params.mes);
 
     loadTikadas();
     return () => {};
-  }, [sueldo,]);
+  }, [sueldo]);
 
   if (user.empleado == null) {
     // return navigate("/");
@@ -115,7 +127,7 @@ export default function Tikadas() {
     <div className="container">
       <div className="position-relative">
         <div
-          className={`position-absolute top-0 start-50 translate-middle-x darkmode btn btn-${
+          className={`border-0 position-absolute bajarTop start-50 translate-middle-x darkmode btn btn-${
             user.mode == "ligth" ? "dark" : "secondary"
           } p-1`}
           onClick={toggleDarkMode}
@@ -143,7 +155,7 @@ export default function Tikadas() {
               </div>
               <div className="col-2 text-center">
                 <img
-                  src={Piconera}
+                  src={fondoMostrar}
                   alt="logo"
                   className="col-3"
                   style={{
@@ -175,7 +187,14 @@ export default function Tikadas() {
                       >
                         Buscar otra fecha
                       </button> */}
-                      <div className="btn btn-primary w-25" onClick={()=>{navigate('/paneladmin')}}>Volver</div>
+                      <div
+                        className="btn btn-primary w-25"
+                        onClick={() => {
+                          navigate("/paneladmin");
+                        }}
+                      >
+                        Volver
+                      </div>
                     </div>
                   </h1>
                 </div>
@@ -190,11 +209,13 @@ export default function Tikadas() {
                 >
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Entrada</th>
-                      <th scope="col">Salida</th>
-                      <th scope="col">Tiempo</th>
-                      <th scope="col">Dinero</th>
+                      <th scope="col" className="p-0">
+                        #
+                      </th>
+                      <th scope="col" className="p-0">Entrada</th>
+                      <th scope="col" className="p-0">Salida</th>
+                      <th scope="col" className="p-0">Tiempo</th>
+                      <th scope="col" className="p-0">Dinero</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -326,7 +347,9 @@ export default function Tikadas() {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => {
-                  console.log( `/tikadas/${params.id}/${selectPickMes}/${selectPickYear}/${selectPickSueldo}`)
+                  console.log(
+                    `/tikadas/${params.id}/${selectPickMes}/${selectPickYear}/${selectPickSueldo}`
+                  );
                   navigate(
                     `/tikadas/${params.id}/${selectPickMes}/${selectPickYear}/${selectPickSueldo}`
                   );

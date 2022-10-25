@@ -66,7 +66,6 @@ export default function PanelAdmin() {
   }, [buscarRango]);
 
   const handleBuscar = (text) => {
-    console.log(text);
     if (text == "") {
       setEmpleadosFound([]);
     } else {
@@ -99,7 +98,6 @@ export default function PanelAdmin() {
         <div
           className="btn btn-primary"
           onClick={() => {
-            console.log("first");
             dispatch(changeMode("dark"));
           }}
         >
@@ -109,7 +107,6 @@ export default function PanelAdmin() {
         <div
           className="btn btn-primary"
           onClick={() => {
-            console.log("first");
             dispatch(changeMode("ligth"));
           }}
         >
@@ -224,8 +221,14 @@ export default function PanelAdmin() {
                   <div className="card-body">
                     <h5 className="card-title">{empleado.nombre}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">
-                      {empleado.apellidos}
-                    </h6>
+                          {empleado.apellidos}
+                        </h6>
+                        <h6 className="card-subtitle mb-2 text-muted fw-bold">
+                          {empleado.rango}
+                        </h6>
+                        <h6 className="card-subtitle mb-2 text-danger fw-bold">
+                          {empleado.nombreEmpresa}
+                        </h6>
                     <p className="card-text fs-6">
                       <AiFillIdcard size="1.5em" />
                       {empleado.dni} <br /> <AiOutlineWhatsApp size="1.5em" />{" "}
@@ -292,8 +295,11 @@ export default function PanelAdmin() {
                         <h6 className="card-subtitle mb-2 text-muted">
                           {empleado.apellidos}
                         </h6>
-                        <h6 className="card-subtitle mb-2 text-muted">
+                        <h6 className="card-subtitle mb-2 text-muted fw-bold">
                           {empleado.rango}
+                        </h6>
+                        <h6 className="card-subtitle mb-2 text-danger fw-bold">
+                          {empleado.nombreEmpresa}
                         </h6>
                         <p className="card-text fs-6">
                           <AiFillIdcard size="1.5em" />
