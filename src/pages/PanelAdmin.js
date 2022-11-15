@@ -226,9 +226,9 @@ export default function PanelAdmin() {
                         <h6 className="card-subtitle mb-2 text-muted fw-bold">
                           {empleado.rango}
                         </h6>
-                        <h6 className="card-subtitle mb-2 text-danger fw-bold">
+                        {/* <h6 className="card-subtitle mb-2 text-danger fw-bold">
                           {empleado.nombreEmpresa}
-                        </h6>
+                        </h6> */}
                     <p className="card-text fs-6">
                       <AiFillIdcard size="1.5em" />
                       {empleado.dni} <br /> <AiOutlineWhatsApp size="1.5em" />{" "}
